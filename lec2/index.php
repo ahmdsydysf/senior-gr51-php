@@ -185,6 +185,25 @@
 //  0    =>    0000  0000
 //  1    =>    0000  0001
 
+// bitwise example
+
+$add_permission  = 8 ;
+$read_permission = 4 ;
+$edit_permission = 2 ;
+$delete_permission = 2 ;
+
+$my_permissions = 0 ;  // no permission yet
+$my_permissions = $add_permission | $edit_permission  ;  // can add and edit now
+$msg = ($my_permissions & $delete_permission) ? 'yes i have this permission' : 'no i can\'t' ;
+$msg = ($my_permissions & $read_permission) ? 'yes i have this permission' : 'no i can\'t' ;
+$msg = ($my_permissions & $add_permission) ? 'yes i have this permission' : 'no i can\'t' ;
+$msg = ($my_permissions & $edit_permission) ? 'yes i have this permission' : 'no i can\'t' ;
+
+var_dump($msg);
+
+
+
+
 // var_dump(5 & 6);//  0000 0101   &   0000  0110  =>        0000   0100
 // var_dump(5 | 9);//  0000 0101   |   0000  1001  =>        0000   1101
 // var_dump(5 ^ 9);//  0000 0101   ^   0000  1001  =>        0000   1100
