@@ -1,0 +1,9 @@
+في ملف المحاضره ستجد ملف 
+exercise
+يجب عليك تخمين النتايج والتأكد منها من خلال احد الطرق التي تحدثنا عنها
+
+عليك انشاء ملف جديد وتطبيق 
+array examples , array key access and value
+
+read in session index page bitwise example
+
