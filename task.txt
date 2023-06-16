@@ -1,0 +1,26 @@
+make 3 files ( Home.php , About.php , Contact.php )
+with the same layout we do 
+make navbar in splitted page and include it on every page
+make data.php and contain 
+$users = [
+  'user1' => ['name'=>'ahmed','age'=>20 , clr=>'red'], 
+  'user2' => ['name'=>'mohamed','age'=>21 , clr=>'green'], 
+  'user3' => ['name'=>'islam','age'=>22 , clr=>'blue'], 
+  'user4' => ['name'=>'abdallah','age'=>23 , clr=>'yellow'], 
+]
+
+print all those data in home page inside HTML in
+
+<div class="card" style="width: 18rem;background-color:black;">
+  <div class="card-body">
+    <h5 class="card-title">user name title</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">user age </h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+
+
+make example using array_merge , in_array , array_diff , array_diff_assoc
+

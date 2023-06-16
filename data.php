@@ -1,5 +1,6 @@
 <?php
 
-define('connection', 123);
+declare(strict_types=1);
+
 $name = 'mohaaaaaaaamed';
 echo "ahmed";
