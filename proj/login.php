@@ -3,6 +3,8 @@
 require_once "data.php";
 var_dump($_GET);
 var_dump($_POST);
+var_dump(isset($_POST['username1']));
+
 
 if(isset($_POST['username1'])) {
 
@@ -12,6 +14,7 @@ if(isset($_POST['username1'])) {
 
 
     $flag = 0 ;
+    $all_errors = [];
 
     $users = [
       'user1' => ['name' => 'mohamed' , 'email' => 'a@g.com' , 'password' => 'red123'],
@@ -20,15 +23,52 @@ if(isset($_POST['username1'])) {
       'user4' => ['name' => 'sayed' , 'email' => 'a@g.com' , 'password' => 'green123'],
     ];
 
-    foreach($users as $user) {
-        if($user['name']  == $username && $user['password'] == $password) {
-            $flag = 1 ;
-            break ;
+    if(! empty($username)) {
+        if(strlen($username) > 8) {
+            if(preg_match('/senior$/', $username)) {
+                $flag++ ;
+            } else {
+                $all_errors['usernameRegx'] = 'plz end us with senior';
+            }
+        } else {
+            $all_errors['usernamelen'] = 'plz len > 8';
         }
+    } else {
+        $all_errors['usernamef'] = 'plz enter';
+    }
+    if(! empty($password)) {
+        if(strlen($password) > 8) {
+            if(preg_match('@[A-Z]@', $password)) {
+                $flag++ ;
+            } else {
+                $all_errors['passRegx'] = 'plz end us with senior';
+            }
+        } else {
+            $all_errors['passlen'] = 'plz len > 8';
+        }
+    } else {
+        $all_errors['passf'] = 'plz enter';
+    }
+    if(! empty($email)) {
+        if(strlen($email) > 8) {
+            if(preg_match('/.com$/', $email)) {
+                $flag++;
+            } else {
+                $all_errors['emailRegx'] = 'plz end us with senior';
+            }
+        } else {
+            $all_errors['emaillen'] = 'plz len > 8';
+        }
+    } else {
+        $all_errors['emailf'] = 'plz enter';
     }
 
 
-    if($flag == 1) {
+    // foreach($users as $user) {
+    // }
+
+
+    if($flag == 3) {
         header('location:index.php');
     } else {
         echo "try agaaaaaain";
@@ -75,7 +115,7 @@ if(isset($_POST['username1'])) {
 
 <div class="inputBox"> 
 
- <input type="text" name="username1" id="" class=""> <i>Username</i> 
+ <input type="text"  name="username1" id="" class=""> <i>Username</i> 
 
 </div> 
 <div class="inputBox"> 
@@ -86,8 +126,21 @@ if(isset($_POST['username1'])) {
 
 <div class="inputBox"> 
 
- <input  name="password1" type="password"> <i>Password</i> 
+ <input  name="password1" type="password" > <i>Password</i> 
+<input type="checkbox" name="" id="">
+<input type="checkbox" name="" id="">
 
+<input type="radio" name="" id="">
+<input type="radio" name="" id="">
+<input type="radio" name="" id="">
+
+<textarea name="" id="" cols="30" rows="10"></textarea>
+
+<select name="" id="">
+  <option value="">eg</option>
+  <option value="">eee</option>
+  <option value="">sss</option>
+</select>
 </div> 
 
 </div> 

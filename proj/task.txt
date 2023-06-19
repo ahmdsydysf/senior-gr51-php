@@ -1,0 +1,23 @@
+data.php  =>  users array
+
+index.php 
+dashboard.php 
+
+login.php  validate  un , pw  , em
+
+if true => header -> index  & if un = admin , pw = admin123 , em = admin@web.com ->header dashboard
+
+index afterlogin  echo  username 
+dashboard   afterlogin echo username 
+
+try to catch data from 
+
+input:password
+input:email
+input:color
+input:date
+radio
+select
+checkbox
+textarea
+
