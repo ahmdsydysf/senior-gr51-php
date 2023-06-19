@@ -1,7 +1,7 @@
 data.php  =>  users array
 
 index.php 
-dashboard.php 
+dashboard.php  
 
 login.php  validate  un , pw  , em
 
