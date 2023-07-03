@@ -7,10 +7,8 @@
   <title>multi Files</title>
 </head>
 <body>
-  <?php
-
-  ?>
   <form action="" method="post" enctype="multipart/form-data">
+    <input type="text" name="test">
     <input type="file" name="myimages[]" id="" multiple >
     <button>upload</button>
   </form>
@@ -22,8 +20,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $all_Errors = [];
     $file_Count = count($_FILES['myimages']['name']);
     $allowed_ext = ['jpg' , 'png' , 'jpeg'];
-
-
     for($i = 0 ; $i < $file_Count  ; $i++) {
         $explod = explode('.', $_FILES['myimages']['name'][$i]);//jahsdh8.456df.gdg.PNG []
         $endOf = end($explod); // png
@@ -45,19 +41,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-
+var_dump($_REQUEST);
 var_dump($all_Errors);
-  var_dump($_FILES['myimages']['error'][0]);
-  if(isset($all_Errors) && !empty($all_Errors)) {
-      foreach ($all_Errors as $value) {
-          echo $value ;
-      }
-  }
+var_dump($_FILES['myimages']['error'][0]);
+if(isset($all_Errors) && !empty($all_Errors)) {
+    foreach ($all_Errors as $value) {
+        echo $value ;
+    }
+}
 
 
-  // $file_Count = count($_FILES['myimages']['name']);//2
-  // for($i = 0 ; $i < $file_Count  ; $i++) {
-  //     move_uploaded_file($_FILES['myimages']['tmp_name'][$i], 'upload/' . $_FILES['myimages']['name'][$i]);
-  // }
-  // move_uploaded_file($_FILES['myimages']['tmp_name'][$i])
-  ?>
+// $file_Count = count($_FILES['myimages']['name']);//2
+// for($i = 0 ; $i < $file_Count  ; $i++) {
+//     move_uploaded_file($_FILES['myimages']['tmp_name'][$i], 'upload/' . $_FILES['myimages']['name'][$i]);
+// }
+// move_uploaded_file($_FILES['myimages']['tmp_name'][$i])
+?>
