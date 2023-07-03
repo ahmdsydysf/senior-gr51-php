@@ -8,14 +8,6 @@
 </head>
 <body>
   <?php
-  var_dump($all_Errors);
-  var_dump($_FILES['myimages']['error'][0]);
-  if(isset($all_Errors) && !empty($all_Errors)) {
-      foreach ($all_Errors as $value) {
-          echo $value ;
-      }
-  }
-
 
   ?>
   <form action="" method="post" enctype="multipart/form-data">
@@ -44,7 +36,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             if($_FILES['myimages']['size'][$i] > 2097152) {
                 $all_Errors['fileSize'] = '<div> plz choose File less than 2 miga </div>';
             } else {
-                if(! in_array($allowed_ext, $file_ext)) {
+                if(! in_array($file_ext, $allowed_ext)) {
                     $all_Errors['fileExt'] = '<div> plz choose File is png , jpg , jpeg </div>';
                 } else {
                     move_uploaded_file($tmpPath, $_SERVER['DOCUMENT_ROOT'] . '/senior-gr51-php/upload/' . $fileName);
@@ -53,6 +45,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
+
+var_dump($all_Errors);
+  var_dump($_FILES['myimages']['error'][0]);
+  if(isset($all_Errors) && !empty($all_Errors)) {
+      foreach ($all_Errors as $value) {
+          echo $value ;
+      }
+  }
 
 
   // $file_Count = count($_FILES['myimages']['name']);//2
