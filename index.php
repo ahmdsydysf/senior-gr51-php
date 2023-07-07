@@ -73,3 +73,4 @@
 // SELECT datediff(now() , '1990-07-07') / 365;
 // SELECT first_name , gender , if(gender = 0 , 'male' , 'female') as redableGender FROM `employees`;
 // SELECT department_id , sum(salary) FROM employees GROUP BY department_id;
+// SELECT count(*) , gender ,job_id , CASE gender when '0' then 'Male' when '1' then 'Female' ELSE 'not defined' end AS namedGender FROM employees GROUP BY gender , job_id;

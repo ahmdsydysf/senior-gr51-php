@@ -1,0 +1,6 @@
+1- i need to get avg sallary for every department_id in employee table
+2- i need to get how many employees in every job_id 
+3- how to calc your birthdate by years only 
+4- i need to know job_id of department_id that have commission_pct <> Null
+5- i need to know all employees that work under  	Steven as first name
+6- try every method and select we test in lecture
