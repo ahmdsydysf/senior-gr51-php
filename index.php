@@ -51,3 +51,25 @@
 // SELECT salary , TRUNCATE(salary , 1) FROM `employees`;
 // SELECT salary , TRUNCATE(salary , 2) FROM `employees`;
 // SELECT salary , TRUNCATE(salary , 0) FROM `employees`;
+
+
+// SELECT CURRENT_TIME();
+// SELECT CURRENT_TIME;
+
+// SELECT curdate();
+// SELECT CURRENT_DATE();
+// SELECT CURRENT_DATE;
+
+// SELECT now();
+// SELECT CURRENT_TIMESTAMP;
+// SELECT CURRENT_TIMESTAMP();
+
+// SELECT dayname(now());
+// SELECT dayofmonth(now());
+// SELECT dayofweak(now());
+// SELECT dayofyear(now());
+
+
+// SELECT datediff(now() , '1990-07-07') / 365;
+// SELECT first_name , gender , if(gender = 0 , 'male' , 'female') as redableGender FROM `employees`;
+// SELECT department_id , sum(salary) FROM employees GROUP BY department_id;
