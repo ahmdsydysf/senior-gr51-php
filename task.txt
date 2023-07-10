@@ -1,0 +1,10 @@
+give me a employee firstname , departmentname , street_address , country_name , region_name for all employees
+
+give me a full employee and department data even they have null 
+
+i need to know manager employee name for Lex
+
+insert new employee with hire_date is the current Time
+
+update any employee sallary with adding 1000 to sallary
+
