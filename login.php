@@ -1,9 +1,10 @@
 <?php
 session_start();
 require_once 'config.php';
+
 $query = mysqli_query($con, 'select * from users');
 while($users = mysqli_fetch_assoc($query)) {
-    if($users['name'] == 'admin' && $users['email'] == 'admin@senior.com') {
+    if($users['name'] == 'senioradmin' && $users['email'] == 'admin@senior.com') {
         $adminFlag = true ;
     } else {
         $adminFlag = false ;
@@ -12,6 +13,8 @@ while($users = mysqli_fetch_assoc($query)) {
 if($adminFlag == false) {
     $query = mysqli_query($con, "insert into users (name , email , password) values ('senioradmin' , 'admin@senior.com' , 'Admin123')");
 }
+
+
 if(isset($_POST['email'])) {
 
     $password = $_POST['password'] ;
@@ -53,7 +56,8 @@ if(isset($_POST['email'])) {
         while($user = mysqli_fetch_assoc($result)) {
             if($user['email'] == $email && $user['password'] == $password) {
                 $redirectflag = 1 ;
-                $_SESSION['email'] = $user['email'];
+                // $_SESSION['email'] = $user['email'];
+                $_SESSION['email'] = $email;
             }
         }
 
