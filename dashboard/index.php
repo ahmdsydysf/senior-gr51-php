@@ -1,8 +1,9 @@
-<?php
-
-include "header.php" ;
+    <?php
 
 $page_name = 'Dashboard';
+include "header.php" ;
+
+
 ?>
 
               <li class="breadcrumb-item active"><?= $page_name ?></li>

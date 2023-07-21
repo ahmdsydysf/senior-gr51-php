@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 
 if(isset($_SESSION['email']) && $_SESSION['email'] != 'admin@senior.com') {
@@ -192,7 +193,7 @@ if(isset($_SESSION['email']) && $_SESSION['email'] != 'admin@senior.com') {
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link <?=  $page_name == 'Dashboard' ? 'active' : ' ' ?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -204,7 +205,7 @@ if(isset($_SESSION['email']) && $_SESSION['email'] != 'admin@senior.com') {
             </ul>
           </li>
           <li class="nav-item">
-            <a href="allusers.php" class="nav-link">
+            <a href="allusers.php" class="nav-link <?=  $page_name == 'add user' || $page_name == 'all users' ? 'active' : ' ' ?>">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Users

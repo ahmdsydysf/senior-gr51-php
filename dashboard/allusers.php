@@ -1,4 +1,5 @@
 <?php
+$page_name = 'all users';
 
 include "header.php";
 
@@ -8,7 +9,6 @@ $stat = 'select * from users';
 
 $result = mysqli_query($con, $stat);
 
-$page_name = 'all users';
 ?>
 
   
@@ -27,8 +27,8 @@ $page_name = 'all users';
         <div class="row">
         <div class="card col-12">
               <div class="card-header">
-                <h3 class="card-title">Striped Full Width Table</h3>
-                <a href="adduser.php">Add New User</a>
+                
+                <a href="adduser.php" class="btn btn-info">Add New User</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
@@ -38,7 +38,7 @@ $page_name = 'all users';
                       <th style="width: 10px">#</th>
                       <th>username</th>
                       <th>email</th>
-                      <th style="width: 40px">password</th>
+                      <th style="width: 40px">user type</th>
                       <th style="width: 40px">options</th>
                     </tr>
                   </thead>
@@ -50,10 +50,11 @@ $page_name = 'all users';
                       <td>
                       <?= $user['email'] ?>
                       </td>
-                      <td><span class="badge bg-danger"><?= $user['password'] ?></span></td>
+                      <td><span class="badge bg-danger"><?= $user['is_admin'] ?></span></td>
                       <td>
-                        <button class="btn btn-danger">del</button>
-                        <button class="btn btn-info">edt</button>
+                        <a href="userdelete.php?id=<?= $user['id'] ?>" class="btn btn-danger">delete</a>
+                        <a href="useredit.php?id=<?= $user['id'] ?>" class="btn btn-success">Edit</a>
+                  
                       </td>
                     </tr>
   <?php endwhile ?>

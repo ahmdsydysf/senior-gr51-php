@@ -1,16 +1,26 @@
 <?php
-$page_name = 'add user';
-include "header.php" ;
-require_once '../config.php';
-if(isset($_POST['name'])) {
+$page_name = 'edit user';
 
-    $stat = "insert into users (name , email , password , is_admin) values ('$_POST[name]' , '$_POST[email]' , '$_POST[password]' , '$_POST[is_admin]')";
-    mysqli_query($con, $stat);
+include "header.php";
+
+require_once '../config.php';
+
+if(isset($_GET['id'])) {
+    $statment = "select * from users where id = $_GET[id]";
+    $query = mysqli_query($con, $statment);
+    $userdata = mysqli_fetch_assoc($query);
+}
+if(isset($_POST['email'])) {
+    $statment = "update users set name='$_POST[name]' , email='$_POST[email]' , password='$_POST[password]' , is_admin='$_POST[is_admin]' where id = $_GET[id]";
+    $query = mysqli_query($con, $statment);
     header('location:allusers.php');
 }
 
 
+
 ?>
+
+  
               <li class="breadcrumb-item active"><?= $page_name ?></li>
             </ol>
           </div><!-- /.col -->
@@ -26,8 +36,10 @@ if(isset($_POST['name'])) {
         <div class="row">
         <div class="card col-12">
               <div class="card-header">
-                <h3 class="card-title">New User Data</h3>
+                
+              delete user data
               </div>
+              <!-- /.card-header -->
               <!-- /.card-header -->
               <div class="card card-primary">
               <div class="card-header">
@@ -39,27 +51,27 @@ if(isset($_POST['name'])) {
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail2">username</label>
-                    <input type="text" name="name" class="form-control" id="exampleInputEmail2" placeholder="Enter username">
+                    <input type="text" name="name" value="<?= $userdata['name'] ?>" class="form-control" id="exampleInputEmail2" placeholder="Enter username">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <input type="email"  value="<?= $userdata['email'] ?>" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input type="text"  value="<?= $userdata['password'] ?>" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                   </div>
                 
                   <div class="form-group">
                   <label for="exampleInputPassword1">user type</label>
 
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" checked id="customRadio1" value="user" name="is_admin">
+                          <input class="custom-control-input" type="radio" <?= $userdata['is_admin'] ==  'user' ? 'checked' : ' ' ?> id="customRadio1" value="user" name="is_admin">
                           <label for="customRadio1" class="custom-control-label">normal user</label>
                         
                         </div>
                         <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="customRadio2"  value="admin" name="is_admin">
+                        <input class="custom-control-input" type="radio" id="customRadio2"  <?= $userdata['is_admin'] ==  'admin' ? 'checked' : ' ' ?>  value="admin" name="is_admin">
                           <label for="customRadio2" class="custom-control-label">admin</label>
                         
                         </div>
@@ -70,10 +82,12 @@ if(isset($_POST['name'])) {
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
+                  <a href="allusers.php" class="btn btn-danger">Submit</a>
                 </div>
               </form>
             </div>
             </div>
+        </div>
         </div>
 
       </div><!-- /.container-fluid -->
@@ -133,7 +147,3 @@ if(isset($_POST['name'])) {
 <script src="dist/js/demo.js"></script>
 </body>
 </html>
-<?php
-ob_end_flush();
-
-?>
