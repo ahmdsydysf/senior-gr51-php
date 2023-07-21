@@ -49,7 +49,16 @@ session_start();
                     <a href="../login.php">login</a>
 
                 <?php endif ;?>
-                <a href="#">FAQs</a>
+
+
+                <?php if(isset($_SESSION['email']) && $_SESSION['email'] == 'admin@senior.com'):?>
+                    
+                    <a href="../dashboard/index.php">Dashboard</a>
+                <?php else : ?>
+                    <a href="#">FAQs</a>
+
+                <?php endif ;?>
+                
             </div>
             <div class="offcanvas__top__hover">
                 <span>Usd <i class="arrow_carrot-down"></i></span>
@@ -93,7 +102,13 @@ session_start();
                                 <a href="../login.php">login</a>
 
                             <?php endif ;?>
-                                <a href="#">FAQs</a>
+                            <?php if(isset($_SESSION['email']) && $_SESSION['email'] == 'admin@senior.com'):?>
+                    
+                    <a href="../dashboard/index.php">Dashboard</a>
+                <?php else : ?>
+                    <a href="#">FAQs</a>
+
+                <?php endif ;?>
                             </div>
                             <div class="header__top__hover">
                                 <span>Usd <i class="arrow_carrot-down"></i></span>

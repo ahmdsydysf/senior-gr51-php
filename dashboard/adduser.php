@@ -1,17 +1,10 @@
 <?php
+$page_name = 'add user';
+include "header.php" ;
 
-include "header.php";
 
-require_once '../config.php';
 
-$stat = 'select * from users';
-
-$result = mysqli_query($con, $stat);
-
-$page_name = 'all users';
 ?>
-
-  
               <li class="breadcrumb-item active"><?= $page_name ?></li>
             </ol>
           </div><!-- /.col -->
