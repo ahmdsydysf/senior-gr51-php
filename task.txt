@@ -1,0 +1,6 @@
+choose dashboard and free temblate and downoad it
+
+make aregisteration and login page redirect to main web or admin dashboard according to admin email
+make full user CRUD operation 
+make full product CRUD
+make full category CRUD 
