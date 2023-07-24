@@ -222,6 +222,15 @@ if(isset($_SESSION['email']) && $_SESSION['email'] != 'admin@senior.com') {
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="allproduct.php" class="nav-link <?=  $page_name == 'Products' ? 'active' : ' ' ?>">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Products
+        
+              </p>
+            </a>
+          </li>
 
         </ul>
       </nav>
