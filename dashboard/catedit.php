@@ -1,19 +1,47 @@
 <?php
-$page_name = 'edit user';
+$page_name = 'Categories';
 
 include "header.php";
 
 require_once '../config.php';
 
 if(isset($_GET['id'])) {
-    $statment = "select * from users where id = $_GET[id]";
+    $statment = "select * from categories where id = $_GET[id]";
     $query = mysqli_query($con, $statment);
     $userdata = mysqli_fetch_assoc($query);
 }
-if(isset($_POST['email'])) {
-    $statment = "update users set name='$_POST[name]' , email='$_POST[email]' , password='$_POST[password]' , is_admin='$_POST[is_admin]' where id = $_GET[id]";
+if(isset($_POST['name'])) {
+    $myimg = $_FILES['image'] ;
+    $ext = ['jpg' , 'png' , 'jpeg'];
+
+    $tmp_name = $myimg['tmp_name'];
+    $img_erro = $myimg['error'];
+    $img_size = $myimg['size'];// byte  / 1024 / 1024
+    $imgname = uniqid() . $myimg['name'];
+    $expload = explode('.', $imgname); //array
+    $end_of  = end($expload);
+    $final_ext = strtolower($end_of);
+
+
+    if(isset($_FILES['image'])) {
+        if($img_erro != 4) {
+            if($img_size < 1027175) {
+                if(in_array($final_ext, $ext)) {
+                    if($userdata['image'] != 'default_image.png') {
+                        unlink('upload/category/' . $userdata['image']);
+                    }
+                    move_uploaded_file($tmp_name, 'upload/category/' . $imgname);
+                } else {
+                    echo "exxxxxxxtintion";
+                }
+            } else {
+                echo "size errorrrrrr";
+            }
+        }
+    }
+    $statment = "update categories set name='$_POST[name]' , image='$imgname' where id = $_GET[id]";
     $query = mysqli_query($con, $statment);
-    header('location:allusers.php');
+    header('location:allcat.php');
 }
 
 
@@ -37,7 +65,7 @@ if(isset($_POST['email'])) {
         <div class="card col-12">
               <div class="card-header">
                 
-              delete user data
+              update category data
               </div>
               <!-- /.card-header -->
               <!-- /.card-header -->
@@ -47,42 +75,43 @@ if(isset($_POST['email'])) {
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" method="post">
+              <form role="form" method="post" enctype="multipart/form-data">
                 <div class="card-body">
+                <div class="form-group">
+                    <img src="upload/category/<?= $userdata['image'] ?>" id="img-preview" width="250px" alt="" srcset="">
+                  </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail2">username</label>
+                    <label for="exampleInputEmail2">name</label>
                     <input type="text" name="name" value="<?= $userdata['name'] ?>" class="form-control" id="exampleInputEmail2" placeholder="Enter username">
                   </div>
+              
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email"  value="<?= $userdata['email'] ?>" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="text"  value="<?= $userdata['password'] ?>" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                  </div>
-                
-                  <div class="form-group">
-                  <label for="exampleInputPassword1">user type</label>
-
-                        <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" <?= $userdata['is_admin'] ==  'user' ? 'checked' : ' ' ?> id="customRadio1" value="user" name="is_admin">
-                          <label for="customRadio1" class="custom-control-label">normal user</label>
-                        
-                        </div>
-                        <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="customRadio2"  <?= $userdata['is_admin'] ==  'admin' ? 'checked' : ' ' ?>  value="admin" name="is_admin">
-                          <label for="customRadio2" class="custom-control-label">admin</label>
-                        
-                        </div>
-                      
+                    <label for="exampleInputFile">change category</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" onchange="showPreview(event)" name="image"  class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="">Upload</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <!-- /.card-body -->
+                <script>
+                    function showPreview(event){
+                      if(event.target.files.length > 0){
+                        let src = URL.createObjectURL(event.target.files[0]);
+                        let preview = document.getElementById('img-preview');
 
+                        preview.src = src
+                      }
+                    }
+                  </script>
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                  <a href="allusers.php" class="btn btn-danger">cancel</a>
+                  <a href="allcat.php" class="btn btn-danger">cancel</a>
                 </div>
               </form>
             </div>

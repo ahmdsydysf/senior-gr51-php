@@ -213,6 +213,15 @@ if(isset($_SESSION['email']) && $_SESSION['email'] != 'admin@senior.com') {
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="allcat.php" class="nav-link <?=  $page_name == 'Categories' ? 'active' : ' ' ?>">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Categories
+        
+              </p>
+            </a>
+          </li>
 
         </ul>
       </nav>
