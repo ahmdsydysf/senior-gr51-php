@@ -4,3 +4,5 @@ make aregisteration and login page redirect to main web or admin dashboard accor
 make full user CRUD operation 
 make full product CRUD
 make full category CRUD 
+make a join between products and categories 
+senf data to front page
