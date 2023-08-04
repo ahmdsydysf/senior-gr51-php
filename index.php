@@ -25,9 +25,9 @@
           Add / Update Students
         </h3>
         <div>
-          <!-- <input style="display:none;" type="text" class="form-control" id="stuid"> -->
+          <input style="display:none;" value="" type="text" class="form-control" id="stuid">
           <label for="nameid" class="form-label">name</label>
-          <input type="text" class="form-control"  id="nameid">
+          <input type="text" class="form-control" id="nameid">
         </div>
         <div>
           <label for="emailid" class="form-label">email</label>
@@ -63,73 +63,147 @@
       </div>
     </div>
   </div>
-  
-  <script>
-    document.querySelector('#btnadd').addEventListener('click' , add_student);
 
-    function add_student(e){
+  <script>
+    showData();
+
+    document.querySelector('#btnadd').addEventListener('click', add_student);
+
+    function add_student(e) {
+      let hidInput =  document.querySelector('#stuid').value;
+
+
       e.preventDefault();
-      let nm = document.querySelector('#nameid').value ;
-      let em = document.querySelector('#emailid').value ;
-      let pw = document.querySelector('#passwordid').value ;
+      let nm = document.querySelector('#nameid').value;
+      let em = document.querySelector('#emailid').value;
+      let pw = document.querySelector('#passwordid').value;
 
       const nxhr = new XMLHttpRequest();
-      nxhr.open('post' , 'insert.php');
-      nxhr.onload = function(){
-        if(nxhr.status == 200){
-        console.log(nxhr.responseText);
-        document.querySelector('#msg').innerHTML = `
+      nxhr.open('post', 'insert.php');
+      nxhr.onload = function () {
+        if (nxhr.status == 200) {
+          console.log(nxhr.responseText);
+          document.querySelector('#msg').innerHTML = `
           <div class='alert alert-info'> ${nxhr.responseText} </div>
         
         `;
-        document.querySelector('#myform').reset();
-        }else{
+          hidInput = null ;
+          document.querySelector('#myform').reset();
+          showData();
+        } else {
           alert('plz try again');
         }
       }
 
       let formData = {
-        name : nm ,
-        email : em ,
-        pass : pw ,
+        id : hidInput ,
+        name: nm,
+        email: em,
+        pass: pw,
       };
 
       let formDataToJSON = JSON.stringify(formData);
 
       nxhr.send(formDataToJSON);
-      showData();
-    } 
 
+    }
 
-    function showData(){
+    function showData() {
 
       let tBody = document.querySelector('#tbody');
 
       tBody.innerHTML = "";
       const nxhr = new XMLHttpRequest();
-      nxhr.open('get' , 'alldata.php');
-      nxhr.onload = function(){
-        if(nxhr.status == 200){
+      nxhr.open('get', 'alldata.php');
+      nxhr.onload = function () {
+        if (nxhr.status == 200) {
           let myData = JSON.parse(nxhr.responseText);
-        myData.forEach(snglSTD => {
-          tBody.innerHTML += `
+          myData.forEach(snglSTD => {
+            tBody.innerHTML += `
           <tr>
             <td> ${snglSTD.id} </td>
             <td> ${snglSTD.name} </td>
             <td> ${snglSTD.email} </td>
             <td> ${snglSTD.password} </td>
-            <td> <button class='btn btn-success'> edit</button> <button class='btn btn-danger'> delete</button></td>
+            <td>
+              <button class='btn btn-success' data-flag='${snglSTD.id}' onclick='edt_std(this)' > edit</button> 
+              <button class='btn btn-danger' data-flag='${snglSTD.id}' onclick='dlt_std(this)' > delete</button>
+            </td>
           </tr>
+              
           `
-        })
-        }else{
+          })
+        } else {
           console.log('errrrrrrrror');
         }
       }
       nxhr.send();
     }
 
-    showData();
+    function dlt_std(btn) {
+
+      let myStdId = btn.getAttribute('data-flag');
+
+
+      const nxhr = new XMLHttpRequest();
+
+      nxhr.open('post', 'delete.php');
+
+      nxhr.onload = function () {
+        if (nxhr.status == 200) {
+          document.querySelector('#msg').innerHTML = `
+          <div class='alert alert-info'> ${nxhr.responseText} </div>
+        `;
+          showData();
+        } else {
+          console.log('eeeeeeeeeror');
+        }
+      }
+
+      let stdID = {
+        id: myStdId
+      }
+
+      let data = JSON.stringify(stdID);
+
+      nxhr.send(data);
+
+    }
+
+    function edt_std(btn) {
+      let myStdId = btn.getAttribute('data-flag');
+      let stdIDInput = document.querySelector('#stuid');
+      let nm = document.querySelector('#nameid');
+      let em = document.querySelector('#emailid');
+      let pw = document.querySelector('#passwordid');
+
+      const nxhr = new XMLHttpRequest();
+
+      nxhr.open('post', 'edit.php');
+
+      nxhr.onload = function () {
+        if (nxhr.status == 200) {
+          console.log(nxhr.responseText);
+          let dataInJS = JSON.parse(nxhr.responseText)
+          nm.value = dataInJS.name ;
+          em.value = dataInJS.email ;
+          pw.value = dataInJS.password ;
+          stdIDInput.style.display = 'block'
+          stdIDInput.value = dataInJS.id
+          stdIDInput.style.display = 'none'
+        } else {
+          console.log('eeeeeeeeeror');
+        }
+      }
+
+      let stdID = {
+        id: myStdId
+      }
+
+      let data = JSON.stringify(stdID);
+
+      nxhr.send(data);
+    }
   </script>
 
 
