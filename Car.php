@@ -3,26 +3,14 @@
 
 class Car
 {
-    public $model;
-
-    private $carCode;
-
-    public function getCode()
+    public function __construct($name, $age)
     {
-        return $this->carCode;
+        echo "my name is $name and age is $age";
     }
 
-    public function openCar($pass)
-    {
-        if($this->carCode == $pass) {
-            return "open the car";
-        } else {
-            return "errror";
-        }
-    }
 
-    public function setCode($newCode)
+    public function hello()
     {
-        $this->carCode = sha1($newCode) ;
+        echo "welcome new car";
     }
 }

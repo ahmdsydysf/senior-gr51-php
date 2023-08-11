@@ -1,12 +1,12 @@
 <?php
 
-require_once "Agent.php";
-require_once "TestAbsEmp.php";
-require_once "Emp.php";
-require_once "Car.php";
+require_once "User.php";
+require_once "Database.php";
 
+$databaseClass = new Database();
 
-$bm = new Car();
-$bm->model = 'x8';
-$bm->setCode(123);
-var_dump($bm->openCar(123));
+$ahmed = new User($databaseClass);
+
+var_dump($ahmed->userDatabase->setConnection());
+
+// Dependency injection
