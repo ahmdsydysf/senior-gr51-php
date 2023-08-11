@@ -7,6 +7,8 @@ class Database implements DbInt
     public $con ;
     public $query_res;
     public $query;
+    public $insertedData;
+    //'insert into users (id , name) values (1 , ahmed)'
 
     public function __construct()
     {
@@ -36,8 +38,35 @@ class Database implements DbInt
         }
         return $data ;
     }
-    public function insert()
+    public function dataToInsert($name, $email, $password)
     {
+        $this->insertedData = [
+          'name' => "$name",
+          'email' => "$email",
+          'password' => "$password",
+        ];
+        return $this;
+    }
+    public function insert($table, $insertedData)
+    {
+
+        $cols = '';
+        $valus = '';
+        foreach($insertedData as $col => $val) {
+            $cols .= "$col ,";
+            $valus .=  " '" . $val . "' ," ;
+        }
+        // name , email , password ,
+
+        $cols = rtrim($cols, ',');
+        $valus = rtrim($valus, ',');
+        $this->query = "insert into $table ($cols) values ($valus)";
+        var_dump($this->query);
+        return $this;
+    }
+    public function excut()
+    {
+        $this->query_res = mysqli_query($this->con, $this->query);
 
     }
     public function edit()
