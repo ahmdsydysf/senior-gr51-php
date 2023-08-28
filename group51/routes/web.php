@@ -47,11 +47,15 @@ Route::get('home/all/data', function () {
 Route::prefix('product')->name('pro.')->controller(ProductController::class)->group(function () {
     Route::get('all', 'index')->name('all');
     Route::get('add', 'create')->name('add');
-    Route::post('add', 'store')->name('store');//http://127.0.0.1:8000/product/data/edit/ui
+    Route::put('add', 'store')->name('store');//http://127.0.0.1:8000/product/data/edit/ui
     Route::get('delete/2', 'delete')->name('del');
 });
 
 
+
 Route::get('test/user/{id}', [TestUserController::class , 'index'])->name('user.all');
 
+Route::fallback(function () {
+    return view('welcome') ;
+});
 // Route::view('test/paramter/{id}' , 'welcome' , [])

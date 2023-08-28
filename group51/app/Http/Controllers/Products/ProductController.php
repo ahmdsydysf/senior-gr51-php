@@ -25,15 +25,7 @@ class ProductController extends Controller
         return view('webData.products.all_products', get_defined_vars());
     }
 
-    public function edit($id, $catid = null)
-    {
-        $productData = 'sadialsdj';
-        $categoryData = 'sadjasskldasd';
-        // echo "my product id is :: $id and my category = $catid";
-        // return view('webData.products.all_products')
-        //         ->with(['prodId' => $id , 'catId' => $catid , ]);
-        return view('webData.products.all_products', compact('id', 'catid', 'productData', 'categoryData'));
-    }
+
 
     public function create()
     {
@@ -44,8 +36,8 @@ class ProductController extends Controller
         //  خزن في الدتا بيز
         //
 
-        // return redirect('product/all');
-        return redirect()->route('pro.all');
+         return redirect('product/all');
+
 
     }
 }
