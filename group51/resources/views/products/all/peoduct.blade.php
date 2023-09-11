@@ -1,0 +1,1 @@
+resources/views/products/all/peoduct.blade.php

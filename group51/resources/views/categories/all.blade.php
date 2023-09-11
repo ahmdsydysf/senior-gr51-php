@@ -1,0 +1,1 @@
+resources/views/categories/all.blade.phpaaaaaaa

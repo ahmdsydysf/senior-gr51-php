@@ -1,5 +1,2 @@
-<h1> grrrrrrrrrrroup 54 </h1>
-
-@dd(env('APP_NAME'))
 ssssssssssssssssssssssssssssssssss
-<h1> {{ env('APP_NAME') }} </h1>
+<h1 id="">my age is {{ $age }} </h1>

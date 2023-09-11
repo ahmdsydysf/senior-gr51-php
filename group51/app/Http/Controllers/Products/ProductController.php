@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('young')->except('index');
+        // $this->middleware('auth')->except();
+    }
     public function ourMain()
     {
         echo "iam from usercontroller method ourMain";
@@ -36,7 +41,7 @@ class ProductController extends Controller
         //  خزن في الدتا بيز
         //
 
-         return redirect('product/all');
+        return redirect('product/all');
 
 
     }

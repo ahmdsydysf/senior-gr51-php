@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\OrderISDone;
+use App\Listeners\sendSalesMailToPrepareOrder;
+use App\Listeners\sendShipmentDepartmentMail;
+use App\Listeners\sendUserNotificaionOfDone;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +22,11 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        OrderISDone::class => [
+            sendUserNotificaionOfDone::class ,
+            sendSalesMailToPrepareOrder::class ,
+            sendShipmentDepartmentMail::class
+        ]
     ];
 
     /**
