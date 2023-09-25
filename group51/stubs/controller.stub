@@ -1,45 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\ControllerInDeep;
+namespace {{ namespace }};
 
+use {{ rootNamespace }}Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\BranchRequest;
-use Illuminate\Support\Facades\Session;
 
-class BranchesController extends Controller
+class {{ class }} extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // Session::put('ahmedkey', null);
-
-        //Session::push('myname', 'youssif');
-        //Session::forget('myname');
-        //Session::flush();
-        //Session::regenerate();
-        // dd($request->session()->get('myname' , function(){
-
-        // }));
-
-        // $nn = $request->session()->pull('ahmedkey');
-        // dd($nn, Session::all());
-        return view('hamada');
+        //
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(BranchRequest $request)
+    public function create()
     {
-
-        $request->validated();
-
-        $allReturnedData = $request->safe()->except(['username']);
-
-        dd($allReturnedData);
+        //
     }
 
     /**

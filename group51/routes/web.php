@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Branches\BranchController;
 use App\Http\Controllers\ControllerInDeep\BrancheController;
 use App\Http\Controllers\ControllerInDeep\BranchesController;
 use App\Http\Controllers\ControllerInDeep\InvoController;
@@ -70,18 +71,25 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome') ;
 // });
 // Route::view('test/paramter/{id}' , 'welcome' , [])
-Route::get('test/invokable', InvoController::class);
+// Route::get('test/invokable', InvoController::class);
 
-Route::prefix('branches')->name('branch.')->controller(BrancheController::class)->group(function () {
-    Route::get('all', 'index')->name('all');
-    Route::get('add', 'create')->name('add');
-    Route::post('add', 'store')->name('store');
-    Route::get('edit/{id}', 'edit')->name('edit');
-    Route::put('edit/{id}', 'update')->name('update');
-    Route::get('show/branch/{id}', 'show')->name('show');
-    Route::delete('branch/{id}', 'destroy')->name('del');
-});
+// Route::prefix('branches')->name('branch.')->controller(BrancheController::class)->group(function () {
+//     Route::get('all', 'index')->name('all');
+//     Route::get('add', 'create')->name('add');
+//     Route::post('add', 'store')->name('store');
+//     Route::get('edit/{id}', 'edit')->name('edit');
+//     Route::put('edit/{id}', 'update')->name('update');
+//     Route::get('show/branch/{id}', 'show')->name('show');
+//     Route::delete('branch/{id}', 'destroy')->name('del');
+// });
 
 // Route::resource('branchahmed', BranchesController::class)->names([
 //     'index' => 'branchahmed.all'
 // ]);
+
+
+
+// Route::get('sessionTest', [BranchesController::class , 'index']);
+// Route::post('sessionTest', [BranchesController::class , 'create'])->name('session.test');
+
+Route::resource('branch', BranchController::class);

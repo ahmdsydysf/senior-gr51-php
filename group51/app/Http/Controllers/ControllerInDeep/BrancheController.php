@@ -12,17 +12,17 @@ class BrancheController extends Controller
     public function index()
     {
         // get all data from DB
-        // return response(view('branches.allbranches'))->cookie('name', 'ahmed', 1);
-        //return view('branches.allbranches');
-        //return redirect()->away('https://www.youtube.com/');
-        // return redirect(view())->with('flag' , 'you are ahmed');
-        // return response()->view('branches.allbranches' , [])
-        // return response()->download('test.txt');
+        // // return response(view('branches.allbranches'))->cookie('name', 'ahmed', 1);
+        // //return view('branches.allbranches');
+        // //return redirect()->away('https://www.youtube.com/');
+        // // return redirect(view())->with('flag' , 'you are ahmed');
+        // // return response()->view('branches.allbranches' , [])
+        // // return response()->download('test.txt');
 
-        $mobile = 1245;
+        // $mobile = 1245;
 
-        return view('branches.allbranches')
-        ->with('mobile', $mobile);
+        // return view('branches.allbranches')
+        // ->with('mobile', $mobile);
 
     }
     public function create()
