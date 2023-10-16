@@ -11,15 +11,13 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id();//pr-key  id  big int  unsigned  AI  not null
-
-            $table->string('category_name', 50);
-
-
+            $table->id();
+            $table->string('name')->nullable();
+            $table->string('code')->nullable();
+            $table->text('description')->nullable();
+            // $table->dateTime('description')->nullable();
+            $table->softDeletes();// deleted_at
             $table->timestamps();
-
-            // $table->timestamp('created_at')->nullable();
-            // $table->timestamp('updated_at')->nullable();
         });
     }
 

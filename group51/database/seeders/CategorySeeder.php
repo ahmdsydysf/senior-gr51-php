@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -15,16 +16,19 @@ class CategorySeeder extends Seeder
     {
 
         $data = [
-            ['name' => 'Cairo' , 'phone' => 6969],
-            ['name' => 'Giza' , 'phone' => 76],
-            ['name' => 'Oboor' , 'phone' => 6945669],
-            ['name' => 'Nasr City' , 'phone' => 67878969],
+            ['name' => 'Cairo' , 'code' => 6969 , 'description' => 'ay descript1'],
+            ['name' => 'Giza' , 'code' => 76 , 'description' => 'ay descript2'],
+            ['name' => 'Oboor' , 'code' => 6945669 , 'description' => 'ay descript3'],
+            ['name' => 'Nasr City' , 'code' => 67878969 , 'description' => 'ay descript4'],
         ];
 
         foreach($data as $branchData) {
-            DB::table('branches')->insert([
-                'branch_name' => $branchData['name'],
-                'branch_phone' => $branchData['phone']
+            DB::table('categories')->insert([
+                'name' => $branchData['name'],
+                'code' => $branchData['code'],
+                'description' => $branchData['description'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]);
         }
 

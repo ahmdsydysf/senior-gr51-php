@@ -1,13 +1,21 @@
 <h1> add new </h1>
-<form action="{{ route('branch.store') }}" method="post">
+<form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
     @csrf
-    <input type="checkbox" name="course" value="b1" id="">b1
-    <input type="checkbox" name="course" value="b2" id="">b2
-    <input type="checkbox" name="course" value="b3" id="">b3
-    <input type="text" name="bName">
-    {{-- <input type="text" name="bName[1]">
-    <input type="text" name="bName[2]"> --}}
-    <input type="text" name="bTele">
-    <input type="text" name="bAddress">
+
+    <input type="text" name="name" value="{{ old('name') }}" placeholder="cat name" id="">
+    @error('name')
+    {{ $message }}
+    @enderror
+    <input type="text" name="code" value="" placeholder="cat code" id="">
+
+    <textarea name="description" id="" cols="30" rows="10">
+
+    </textarea>
+
+    <input type="file" name="cat_img" id="">
+
+    <input type="radio" name="status" value="actv" id="">active
+    <input type="radio" name="status" value="not_actv" id="">not active
+
     <button>add</button>
 </form>

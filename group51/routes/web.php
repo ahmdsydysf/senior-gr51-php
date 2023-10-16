@@ -1,16 +1,18 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MailSendController;
+use App\Http\Controllers\TestUserController;
+use App\Http\Controllers\eventTestController;
 use App\Http\Controllers\Branches\BranchController;
+use App\Http\Controllers\Products\ProductController;
+use App\Http\Controllers\ControllerInDeep\InvoController;
 use App\Http\Controllers\ControllerInDeep\BrancheController;
 use App\Http\Controllers\ControllerInDeep\BranchesController;
-use App\Http\Controllers\ControllerInDeep\InvoController;
-use App\Http\Controllers\eventTestController;
-use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProductController as ControllersProductController;
-use App\Http\Controllers\Products\ProductController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TestUserController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,4 +94,14 @@ use Illuminate\Support\Facades\Route;
 // Route::get('sessionTest', [BranchesController::class , 'index']);
 // Route::post('sessionTest', [BranchesController::class , 'create'])->name('session.test');
 
-Route::resource('branch', BranchController::class);
+Route::resources(
+    [
+    'branch' => BranchController::class ,
+    'category' => CategoryController::class ,
+    ]
+);
+
+Route::get('newvacancy', [MailSendController::class , 'index']);
+Route::get('/', function () {
+    return view('welcome');
+});

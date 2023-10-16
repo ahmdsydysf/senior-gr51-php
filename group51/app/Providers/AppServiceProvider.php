@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\ViewComposer\HeaderComposer;
 use App\ViewComposer\ViewComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
@@ -23,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
+
+
+
+        View::composer('welcome', HeaderComposer::class);
 
     }
 }

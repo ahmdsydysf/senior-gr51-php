@@ -35,6 +35,7 @@ class RouteServiceProvider extends ServiceProvider
             });
         });
 
+        // Route::model('categoryaat', Category::class);
 
         $this->routes(function () {
             Route::middleware('api')
