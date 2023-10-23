@@ -15,9 +15,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //$allData = DB::table('categories')->whereNull('deleted_at')->get();
-        $allData = Category::withTrashed()->get();
-
+        //$allData = DB::table('types')->whereNull('deleted_at')->get();
+        // $allData = Category::with(['Parent','Children'])->get();
+        $allData = Category::with(['Products:name,id,category_id' => ['Users','Category']])->findOrFail(14);
+        // $ll = $allData->load('Products.Users');[
+        // dd($allData->Products);
         return view('branches.allbranches', compact('allData'));
     }
 
